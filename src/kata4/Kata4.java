@@ -15,12 +15,31 @@ import view.MailHistogramBuilder;
 import view.MailListReader;
 
 public class Kata4 {
+    private List<Mail> mailList;
+    private Histogram<String> histogram;    
+    
     public static void main(String[] args) throws FileNotFoundException, IOException {
+        Kata4 kata4 = new Kata4();
+        kata4.execute();
+    }
+
+    public void execute() throws IOException{
+      input();
+      process();
+      output();
+    }
+    
+    public void input() throws IOException{
         String filename = new String("C:\\Users\\Entrar\\Documents\\NetBeansProjects\\Kata4\\src\\emails.txt");
-        List<Mail> mailList = MailListReader.read(filename);
-        Histogram<String> histogram = MailHistogramBuilder.build(mailList);
+        mailList = MailListReader.read(filename);
+    }
+    
+    public void process(){
+        histogram = MailHistogramBuilder.build(mailList);
+    }
+    
+    public void output(){
         HistogramDisplay histodisplay = new HistogramDisplay(histogram);
         histodisplay.execute();
     }
-    
 }
